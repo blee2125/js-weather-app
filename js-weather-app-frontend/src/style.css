@@ -1,0 +1,9 @@
+body {
+    background-color: coral
+}
+
+.card {
+    background-color: lightslategray;
+    width: 20%;
+    text-align: center;
+}
