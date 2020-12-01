@@ -12,3 +12,11 @@ function seeTheWeather() {
   alert(`zipcode is ${zip}`);
 
 }
+
+// enter/return button for zipcode field, must load after DOM
+document.getElementById("zipcode").addEventListener("keyup", function(event) {
+  if(event.key == "Enter") {
+    event.preventDefault();
+    document.querySelector("button#zipcodeButton").click();
+  }
+});
