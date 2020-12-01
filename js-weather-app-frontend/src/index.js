@@ -13,6 +13,7 @@ function seeTheWeather() {
 
   let city = document.querySelector(".city")
   let temperature = document.querySelector(".temperature")
+  let description = document.querySelector(".description")
 
   if (zipcode) {
     const api = `http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=8e96251acc0bcddc94b74de1c9fc5d22&units=imperial`
@@ -24,10 +25,12 @@ function seeTheWeather() {
       .then(data =>{
         console.log(data);
         const cityName = data.name
+        city.textContent = cityName
         const temperatureFloat = data.main.temp
         const temperatureInt = Math.round(temperatureFloat)
-        city.textContent = cityName
         temperature.textContent = temperatureInt + " °f"
+        const descriptionApi = data.weather[0].description
+        description.textContent = descriptionApi
       })
   }
 
