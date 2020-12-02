@@ -5,7 +5,7 @@ fetch(`http://${BACKEND_URL}/test`)
   .then(response => response.json())
   .then(parsedResponse => console.log(parsedResponse));
 */
-
+/*
 const cards = document.querySelector("body > div.cards")
 const newDiv = document.createElement("div")
 const newH3 = document.createElement("h3")
@@ -21,7 +21,7 @@ newH3.setAttribute("class", "city")
 newH2.setAttribute("class", "temperature")
 newH2.innerHTML = "new card"
 newP.setAttribute("class", "description")
-
+*/
 
 
 
@@ -51,17 +51,29 @@ function seeTheWeather() {
         temperature.textContent = temperatureInt + " °f"
         const descriptionApi = data.weather[0].description
         description.textContent = descriptionApi
+        newCard();
       })
   }
 }
 
 function newCard() {
-  var card = document.createElement('div.card');
-  var city = document.createElement('h3')
-  city.innerHTML = "new card name"
-  card.appendChild(city);
+  const cards = document.querySelector("body > div.cards")
+  const newDiv = document.createElement("div")
+  const newH3 = document.createElement("h3")
+  const newH2 = document.createElement("h2")
+  const newP = document.createElement("p")
 
-  document.body.appendChild(card);
+  cards.append(newDiv)
+  newDiv.append(newH3)
+  newDiv.append(newH2)
+  newDiv.append(newP)
+  newDiv.setAttribute("class", "card")
+  newH3.setAttribute("class", "city")
+  newH3.innerHTML = "new card"
+  newH2.setAttribute("class", "temperature")
+  newH2.innerHTML = "new card"
+  newP.setAttribute("class", "description")
+  newP.innerHTML = "new card"
 }
 
 // enter/return button for zipcode field, must load after DOM
