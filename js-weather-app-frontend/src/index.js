@@ -1,9 +1,29 @@
 console.log("testing...123")
 // test that we can get data from the backend
-const BACKEND_URL = 'localhost:3000';
+/*const BACKEND_URL = 'localhost:3000';
 fetch(`http://${BACKEND_URL}/test`)
   .then(response => response.json())
   .then(parsedResponse => console.log(parsedResponse));
+*/
+
+const cards = document.querySelector("body > div.cards")
+const newDiv = document.createElement("div")
+const newH3 = document.createElement("h3")
+const newH2 = document.createElement("h2")
+const newP = document.createElement("p")
+
+cards.append(newDiv)
+newDiv.append(newH3)
+newDiv.append(newH2)
+newDiv.append(newP)
+newDiv.setAttribute("class", "card")
+newH3.setAttribute("class", "city")
+newH2.setAttribute("class", "temperature")
+newH2.innerHTML = "new card"
+newP.setAttribute("class", "description")
+
+
+
 
 function seeTheWeather() {
   //gets zipcode from input
@@ -33,7 +53,15 @@ function seeTheWeather() {
         description.textContent = descriptionApi
       })
   }
+}
 
+function newCard() {
+  var card = document.createElement('div.card');
+  var city = document.createElement('h3')
+  city.innerHTML = "new card name"
+  card.appendChild(city);
+
+  document.body.appendChild(card);
 }
 
 // enter/return button for zipcode field, must load after DOM
