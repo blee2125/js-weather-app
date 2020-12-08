@@ -4,6 +4,26 @@ body {
 
 .card {
     background-color: lightslategray;
-    width: 20%;
+    width: 150px;
     text-align: center;
+    height: 150px;
+}
+
+.cards {
+    display: grid;
+    grid-template-rows: 150px 150px;
+    grid-template-columns: 150px 150px 150px;
+    grid-gap: 10px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+.main-weather {
+    background-color: cyan;
+    width: 100%;
+    height: 200px;
 }
