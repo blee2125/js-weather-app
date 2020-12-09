@@ -15,18 +15,26 @@
       <input type="password" id="password" placeholder="password">
       <button type="button" id="loginButton" onclick="logIn();">login</button>
       <button type="button" id="signupButton" onclick="signUp();">signup</button>
+      <button type="button" id="logoutButton" onclick="logOut();">logout</button>
     </form>
     </div>
 
     <div class="zipcode">
       <input type="text" id="zipcode" placeholder="zipcode">
       <button type="button" id="zipcodeButton" onclick="seeTheWeather();">see the weather</button>
+      <button type="button" id="settingsButton" onclick="toggleSettings();">settings</button>
+    </div>
+
+    <div class="settings" id="settings">
+      <p>dark mode</p>
+      <p>f/c</p>
+      <p>change password</p>
     </div>
 
     <div class="main-weather">
 
       <div class="column">
-        ICON
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
       </div>
       <div class="column">
         <h3 class="city">city</h3>
