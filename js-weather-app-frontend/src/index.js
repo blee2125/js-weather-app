@@ -40,6 +40,13 @@ function signUp() {
     .then(parsedResponse => console.log(parsedResponse))
 }
 
+function logOut() {
+  let buttons = document.querySelector("button#loginButton")
+  fetch(`http://${BACKEND_URL}/logout`)
+    .then(response => response.json())
+    .then(parsedResponse => console.log(parsedResponse))
+}
+
 
 function seeTheWeather() {
   //gets zipcode from input
@@ -56,8 +63,8 @@ function seeTheWeather() {
         return response.json()
       })
       .then(data =>{
-        //console.log(data);
-        newCard();
+        console.log(data)
+        let icon = document.querySelector(".icon")
         let city = document.querySelector(".city")
         let temperature = document.querySelector(".temperature")
         let description = document.querySelector(".description")
@@ -90,6 +97,15 @@ function newCard() {
   newH2.innerHTML = "new card"
   newP.setAttribute("class", "description")
   newP.innerHTML = "new card"
+}
+
+function toggleSettings() {
+  var x = document.getElementById("settings");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
 
 // enter/return button for zipcode field, must load after DOM
