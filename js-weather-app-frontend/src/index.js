@@ -108,6 +108,11 @@ function toggleSettings() {
   }
 }
 
+function toggleDarkMode() {
+  var element = document.body
+  element.classList.toggle("dark-mode");
+}
+
 // enter/return button for zipcode field, must load after DOM
 document.getElementById("zipcode").addEventListener("keyup", function(event) {
   if(event.key == "Enter") {
