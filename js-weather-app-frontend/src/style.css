@@ -27,3 +27,10 @@ body {
     width: 100%;
     height: 200px;
 }
+
+.settings {
+    background-color: darkorchid;
+    width: 100%;
+    height: 100px;
+    display: none;
+}
