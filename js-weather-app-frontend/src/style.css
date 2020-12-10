@@ -1,5 +1,17 @@
 body {
-    background-color: coral
+    background-color: rgb(0 207 241);
+    color: black;
+    text-align: center;
+}
+.dark-mode {
+    background-color: rgb(29 0 62);
+    color: white;
+}
+.disappear {
+    display: none;
+}
+.appear {
+    display: unset;
 }
 
 .card {
@@ -22,6 +34,18 @@ body {
     text-align: center;
 }
 
+#displayName {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#logoutButton {
+    display: none;
+}
+
 .main-weather {
     background-color: cyan;
     width: 100%;
@@ -29,8 +53,8 @@ body {
 }
 
 .settings {
-    background-color: darkorchid;
     width: 100%;
     height: 100px;
     display: none;
 }
+

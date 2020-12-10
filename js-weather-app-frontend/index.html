@@ -4,6 +4,7 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="src/style.css">
+    <script type="application/javascript" src="src/app.js" charset="UTF-8"></script>
 
     <title>WEATHER</title>
   </head>
@@ -15,7 +16,8 @@
       <input type="password" id="password" placeholder="password">
       <button type="button" id="loginButton" onclick="logIn();">login</button>
       <button type="button" id="signupButton" onclick="signUp();">signup</button>
-      <button type="button" id="logoutButton" onclick="logOut();">logout</button>
+      <label for="logoutButton" id="displayName" style="display: none;">user name</label>
+      <button type="button" id="logoutButton" style="display: none;" onclick="logOut();">logout</button>
     </form>
     </div>
 
@@ -25,7 +27,7 @@
       <button type="button" id="settingsButton" onclick="toggleSettings();">settings</button>
     </div>
 
-    <div class="settings" id="settings">
+    <div class="settings" id="settings" style="display: none;">
       <button type="button" id="darkModeButton" onclick="toggleDarkMode();">dark mode</button>
       <p>f/c</p>
       <p>change password</p>
@@ -42,7 +44,7 @@
         <p class="description">description</p>
       </div>
       <div class="column">
-        <button type="button" id="saveButtton" onclick="newCard();">new card</button>
+        <button type="button" id="saveButtton" onclick="saveLocation();">save</button>
       </div>
       
     </div>
