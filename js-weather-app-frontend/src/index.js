@@ -1,4 +1,22 @@
 const BACKEND_URL = 'localhost:3000';
+let zipcodeArray = []
+let settingsArray = []
+var currentUser = null;
+
+function saveLocation() {
+  let zipcode = document.getElementById("zipcode").value
+
+  fetch(`http://${BACKEND_URL}/update`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({username: currentUser.name, locations: zipcode, settings: currentUser.settings})
+  })
+  .then(response => response.json())
+  .then(parsedResponse => console.log(parsedResponse))
+}
 
 function logIn() {
   let username = document.getElementById("login").value
@@ -15,9 +33,11 @@ function logIn() {
     .then(response => response.json())
     .then(parsedResponse => {
       if (parsedResponse.message === "Logged In") {
-        toggleLogin();
+        toggleLogin(),
+        currentUser = parsedResponse.object,
+        console.log(currentUser);
+        displayName.textContent = "name: "+ currentUser.name;
       }
-      console.log(parsedResponse)
     })
 }
 
@@ -28,14 +48,16 @@ function toggleLogin() {
   let signupButton = document.getElementById("signupButton")
   let logoutButton = document.getElementById("logoutButton")
   let displayName = document.getElementById("displayName")
+  let saveButtton = document.getElementById("saveButtton")
 
   username.classList.toggle("disappear");
   password.classList.toggle("disappear");
   loginButton.classList.toggle("disappear");
   signupButton.classList.toggle("disappear");
+  toggleSomething("saveButtton");
   toggleSomething("logoutButton");
   toggleSomething("displayName");
-
+  //displayName.textContent = "name: "+ currentUser.name
 }
 
 function signUp() {
@@ -54,8 +76,10 @@ function signUp() {
     .then(parsedResponse => {
       if (parsedResponse.message === "Logged In") {
         toggleLogin();
+        currentUser = parsedResponse.object,
+        console.log(currentUser);
+        displayName.textContent = "name: "+ currentUser.name;
       }
-      console.log(parsedResponse)
     })
 }
 
@@ -69,6 +93,7 @@ function logOut() {
       }
       console.log(parsedResponse)
     })
+    currentUser = null;
 }
 
 function newCard() {
