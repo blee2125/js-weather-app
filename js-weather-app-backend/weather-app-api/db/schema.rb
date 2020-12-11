@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2020_12_09_161012) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "locations"
-    t.string "settings"
+    t.text "locations", default: [], array: true
+    t.text "settings", default: [], array: true
   end
 
 end
