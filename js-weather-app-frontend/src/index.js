@@ -5,6 +5,7 @@ var currentUser = null;
 
 function saveLocation() {
   let zipcode = document.getElementById("zipcode").value
+  zipcodeArray.push(zipcode)
 
   fetch(`http://${BACKEND_URL}/update`, {
     method: "PATCH",
@@ -12,10 +13,15 @@ function saveLocation() {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-    body: JSON.stringify({username: currentUser.name, locations: zipcode, settings: currentUser.settings})
+    body: JSON.stringify({username: currentUser.name, locations: zipcodeArray, settings: currentUser.settings})
   })
   .then(response => response.json())
   .then(parsedResponse => console.log(parsedResponse))
+  //zipcodeArray.forEach(newCard);
+}
+
+function locationArray() {
+  zipcodeArray.forEach(getWeather)
 }
 
 function logIn() {
@@ -36,9 +42,11 @@ function logIn() {
         toggleLogin(),
         currentUser = parsedResponse.object,
         console.log(currentUser);
+        zipcodeArray = currentUser.locations
         displayName.textContent = "name: "+ currentUser.name;
       }
     })
+    seeTheWeather();
 }
 
 function toggleLogin() {
@@ -90,30 +98,32 @@ function logOut() {
     .then(parsedResponse => {
       if (parsedResponse.message === "Logged Out") {
         toggleLogin();
+        zipcodeArray = [];
+        settingsArray = [];
       }
       console.log(parsedResponse)
     })
     currentUser = null;
 }
 
-function newCard() {
+function newCard(value, index, array) {
   const newCards = document.querySelector("body > div.cards")
   const newDiv = document.createElement("div")
   const newH3 = document.createElement("h3")
   const newH2 = document.createElement("h2")
-  const newP = document.createElement("p")
+  //const newP = document.createElement("p")
 
   newCards.append(newDiv)
   newDiv.append(newH3)
   newDiv.append(newH2)
-  newDiv.append(newP)
+  //newDiv.append(newP)
   newDiv.setAttribute("class", "card")
   newH3.setAttribute("class", "city")
-  newH3.innerHTML = "new card"
+  newH3.innerHTML = +value
   newH2.setAttribute("class", "temperature")
-  newH2.innerHTML = "new card"
-  newP.setAttribute("class", "description")
-  newP.innerHTML = "new card"
+  newH2.innerHTML = ''
+  //newP.setAttribute("class", "description")
+  //newP.innerHTML = "description"
 }
 function toggleSomething(something) {
   var x = document.getElementById(something);
@@ -131,7 +141,6 @@ function toggleSettings() {
     x.style.display = "none";
   }
 }
-
 function toggleDarkMode() {
   var element = document.body
   element.classList.toggle("dark-mode");
