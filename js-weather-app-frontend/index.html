@@ -24,7 +24,7 @@
     <div class="zipcode">
       <input list="zipcodes" id="zipcode" placeholder="zipcode">
       <datalist id="zipcodes">
-        
+
       </datalist>
       <button type="button" id="zipcodeButton" onclick="seeTheWeather();">see the weather</button>
       <button type="button" id="saveButtton" style="display: none;" onclick="saveLocation();">save</button>
@@ -39,14 +39,18 @@
     <div class="main-weather">
 
       <div class="column">
-        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
+        <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
+        <p class="description">description</p>
       </div>
       <div class="column">
         <h3 class="city">city</h3>
         <h2 class="temperature">temp</h2>
-        <p class="description">description</p>
+        <p class="feels-like">feels like</p>
       </div>
       <div class="column">
+        <p class="wind-direction">wind direction</p>
+        <p class="wind-speed">wind speed</p>
+        <p class="wind-gust">wind gust</p>
       </div>
       
     </div>
