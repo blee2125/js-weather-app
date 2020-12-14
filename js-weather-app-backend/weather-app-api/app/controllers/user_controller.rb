@@ -19,7 +19,7 @@ class UserController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:locations, :settings)
+        params.require(:user).permit(locations: [], settings: [])
     end
 
 end
