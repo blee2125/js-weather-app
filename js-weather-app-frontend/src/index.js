@@ -1,6 +1,6 @@
 const BACKEND_URL = 'localhost:3000';
 let zipcodeArray = []
-let settingsArray = []
+let settingsArray = ["light", "f"]
 var currentUser = null;
 
 function saveLocation() {
@@ -21,7 +21,15 @@ function saveLocation() {
 }
 
 function locationArray() {
-  zipcodeArray.forEach(getWeather)
+  zipcodeArray.forEach(listArray)
+}
+
+function listArray(value, index, array) {
+  let zipcodeDropDown = document.querySelector("#zipcodes")
+  let newOption = document.createElement("option")
+
+  zipcodeDropDown.append(newOption)
+  newOption.setAttribute("value", `${value}`)
 }
 
 function logIn() {
@@ -46,7 +54,9 @@ function logIn() {
         displayName.textContent = "name: "+ currentUser.name;
       }
     })
+    locationArray(listArray);
     seeTheWeather();
+    
 }
 
 function toggleLogin() {
@@ -106,7 +116,7 @@ function logOut() {
     currentUser = null;
 }
 
-function newCard(value, index, array) {
+function newCard() {
   const newCards = document.querySelector("body > div.cards")
   const newDiv = document.createElement("div")
   const newH3 = document.createElement("h3")
@@ -119,7 +129,7 @@ function newCard(value, index, array) {
   //newDiv.append(newP)
   newDiv.setAttribute("class", "card")
   newH3.setAttribute("class", "city")
-  newH3.innerHTML = +value
+  newH3.innerHTML = this.name
   newH2.setAttribute("class", "temperature")
   newH2.innerHTML = ''
   //newP.setAttribute("class", "description")

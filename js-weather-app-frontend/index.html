@@ -22,15 +22,18 @@
     </div>
 
     <div class="zipcode">
-      <input type="text" id="zipcode" placeholder="zipcode">
+      <input list="zipcodes" id="zipcode" placeholder="zipcode">
+      <datalist id="zipcodes">
+        
+      </datalist>
       <button type="button" id="zipcodeButton" onclick="seeTheWeather();">see the weather</button>
-      <button type="button" id="settingsButton" onclick="toggleSettings();">settings</button>
+      <button type="button" id="saveButtton" style="display: none;" onclick="saveLocation();">save</button>
+      <button type="button" id="settingsButton" onclick="toggleSettings();">⚙</button>
     </div>
 
     <div class="settings" id="settings" style="display: none;">
       <button type="button" id="darkModeButton" onclick="toggleDarkMode();">dark mode</button>
       <p>f/c</p>
-      <p>change password</p>
     </div>
 
     <div class="main-weather">
@@ -44,7 +47,6 @@
         <p class="description">description</p>
       </div>
       <div class="column">
-        <button type="button" id="saveButtton" onclick="saveLocation();">save</button>
       </div>
       
     </div>
