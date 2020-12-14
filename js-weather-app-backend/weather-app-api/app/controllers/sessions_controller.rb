@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
         @user= User.find_by(name: params["session"]["username"])
         if @user && @user.authenticate(params["session"]["password"])
             session[:user_id] = @user.id
-            render json: {object: @user, message: "welcome back"}
+            render json: {object: @user, message: "Logged In"}
         else
-            render json: {message: "username/password incorrect"}
+            render json: {message: "Error"}
         end
     end
 
