@@ -32,6 +32,10 @@ function listArray(value, index, array) {
   newOption.setAttribute("value", `${value}`)
 }
 
+function clearListArray() {
+  document.getElementById("zipcodes").innerHTML = "";
+}
+
 function logIn() {
   let username = document.getElementById("login").value
   let password = document.getElementById("password").value
@@ -51,10 +55,11 @@ function logIn() {
         currentUser = parsedResponse.object,
         console.log(currentUser);
         zipcodeArray = currentUser.locations
-        displayName.textContent = "name: "+ currentUser.name;
+        displayName.textContent = "hello, "+ currentUser.name;
+        locationArray(listArray);
+
       }
     })
-    locationArray(listArray);
     seeTheWeather();
     
 }
