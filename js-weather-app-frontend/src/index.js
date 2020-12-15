@@ -3,6 +3,28 @@ let zipcodeArray = []
 let settingsArray = ["light", "f"]
 var currentUser = null;
 
+function checkDark() {
+  var darkModeCheck = (document.body.classList.value === "dark-mode")
+  if (darkModeCheck) {
+    settingsArray[0] = "dark"
+  } else {
+    settingsArray[0] = "light"
+  }
+}
+function saveDarkMode() {
+  checkDark();
+  fetch(`http://${BACKEND_URL}/update`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({username: currentUser.name, settings: settingsArray})
+  })
+  .then(response => response.json())
+  .then(parsedResponse => console.log(parsedResponse))
+}
+
 function saveLocation() {
   let zipcode = document.getElementById("zipcode").value
   zipcodeArray.push(zipcode)
@@ -17,13 +39,11 @@ function saveLocation() {
   })
   .then(response => response.json())
   .then(parsedResponse => console.log(parsedResponse))
-  //zipcodeArray.forEach(newCard);
 }
 
 function locationArray() {
   zipcodeArray.forEach(listArray)
 }
-
 function listArray(value, index, array) {
   let zipcodeDropDown = document.querySelector("#zipcodes")
   let newOption = document.createElement("option")
@@ -31,7 +51,6 @@ function listArray(value, index, array) {
   zipcodeDropDown.append(newOption)
   newOption.setAttribute("value", `${value}`)
 }
-
 function clearListArray() {
   document.getElementById("zipcodes").innerHTML = "";
 }
@@ -57,13 +76,12 @@ function logIn() {
         zipcodeArray = currentUser.locations
         displayName.textContent = "hello, "+ currentUser.name;
         locationArray(listArray);
-
+        if (currentUser.settings[0] === "dark") {
+          toggleDarkMode();
+        }
       }
     })
-    seeTheWeather();
-    
 }
-
 function toggleLogin() {
   let username = document.getElementById("login")
   let password = document.getElementById("password")
@@ -80,9 +98,7 @@ function toggleLogin() {
   toggleSomething("saveButtton");
   toggleSomething("logoutButton");
   toggleSomething("displayName");
-  //displayName.textContent = "name: "+ currentUser.name
 }
-
 function signUp() {
   let username = document.getElementById("login").value
   let password = document.getElementById("password").value
@@ -105,7 +121,6 @@ function signUp() {
       }
     })
 }
-
 function logOut() {
   let buttons = document.querySelector("button#loginButton")
   fetch(`http://${BACKEND_URL}/logout`)
@@ -115,6 +130,7 @@ function logOut() {
         toggleLogin();
         zipcodeArray = [];
         settingsArray = [];
+        clearListArray();
       }
       console.log(parsedResponse)
     })
@@ -159,6 +175,7 @@ function toggleSettings() {
 function toggleDarkMode() {
   var element = document.body
   element.classList.toggle("dark-mode");
+  saveDarkMode();
 }
 
 // enter/return button for zipcode field, must load after DOM
