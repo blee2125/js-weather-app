@@ -22,7 +22,7 @@
     </div>
 
     <div class="zipcode">
-      <input list="zipcodes" id="zipcode" placeholder="zipcode">
+      <input name="inputZip" list="zipcodes" id="zipcode" placeholder="zipcode" autocomplete="off">
       <datalist id="zipcodes">
 
       </datalist>
@@ -32,25 +32,25 @@
     </div>
 
     <div class="settings" id="settings" style="display: none;">
-      <button type="button" id="darkModeButton" onclick="toggleDarkMode();">dark mode</button>
-      <p>f/c</p>
+      <p>Settings</p>
+      <button type="button" id="darkModeButton" onclick="toggleDarkMode();">Toggle Dark Mode</button>
     </div>
 
     <div class="main-weather">
 
       <div class="column">
+        <h3 class="city"></h3>
+        <h2 class="temperature"></h2>
+        <p class="feels-like"></p>
+      </div>
+      <div class="column">
         <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
-        <p class="description">description</p>
+        <p class="description">Enter a zipcode to see current weather info</p>
       </div>
       <div class="column">
-        <h3 class="city">city</h3>
-        <h2 class="temperature">temp</h2>
-        <p class="feels-like">feels like</p>
-      </div>
-      <div class="column">
-        <p class="wind-direction">wind direction</p>
-        <p class="wind-speed">wind speed</p>
-        <p class="wind-gust">wind gust</p>
+        <p class="wind-direction"></p>
+        <p class="wind-speed"></p>
+        <p class="wind-gust"></p>
       </div>
       
     </div>
