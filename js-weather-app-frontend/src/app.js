@@ -50,12 +50,20 @@ function seeTheWeather() {
           let windSpeed = document.querySelector(".wind-speed")
           const windSpeedFloat = data.wind.speed
           const windSpeedInt = Math.round(windSpeedFloat)
-          windSpeed.textContent = "Wind Speed: " + windSpeedInt + "°"
+          windSpeed.textContent = "Wind Speed: " + windSpeedInt + "mph"
 
           let windGust = document.querySelector(".wind-gust")
-          const windGustFloat = data.wind.gust
-          const windGustInt = Math.round(windGustFloat)
-          windGust.textContent = "Wind Gust: " + windGustInt + "°"
+          if (data.wind.gust) {
+            const windGustFloat = data.wind.gust
+            const windGustInt = Math.round(windGustFloat)
+            windGust.textContent = "Wind Gust: " + windGustInt + "mph"
+          } else {
+            windGust.textContent = "No Wind Gust"
+          }
         })
     }
+}
+
+function northSouth() {
+
 }
