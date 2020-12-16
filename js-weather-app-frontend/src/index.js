@@ -1,7 +1,8 @@
 const BACKEND_URL = 'localhost:3000';
 let zipcodeArray = []
-let settingsArray = ["light", "f"]
+let settingsArray = ["light"] //light is default
 var currentUser = null;
+var currentLocation = "";
 
 function checkDark() {
   var darkModeCheck = (document.body.classList.value === "dark-mode")
@@ -77,7 +78,7 @@ function logIn() {
         displayName.textContent = "hello, "+ currentUser.name;
         locationArray(listArray);
         if (currentUser.settings[0] === "dark") {
-          toggleDarkMode();
+          document.body.classList.value === "dark-mode"
         }
       }
     })
