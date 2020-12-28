@@ -78,7 +78,9 @@ function logIn() {
         displayName.textContent = "hello, "+ currentUser.name;
         locationArray(listArray);
         if (currentUser.settings[0] === "dark") {
-          document.body.classList.value === "dark-mode"
+          document.body.classList.value = "dark-mode";
+        } else if (currentUser.settings[0] === "light") {
+          document.body.classList.value = "";
         }
       }
     })
