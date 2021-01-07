@@ -5,7 +5,7 @@ var currentUser = null;
 var currentLocation = "";
 
 function checkDark() {
-  var darkModeCheck = (document.body.classList.value === "dark-mode")
+  let darkModeCheck = (document.body.classList.value === "dark-mode")
   if (darkModeCheck) {
     settingsArray[0] = "dark"
   } else {
@@ -23,7 +23,7 @@ function saveDarkMode() {
     body: JSON.stringify({username: currentUser.name, settings: settingsArray})
   })
   .then(response => response.json())
-  .then(parsedResponse => console.log(parsedResponse))
+  .then(data => console.log(data))
 }
 
 function saveLocation() {
@@ -39,7 +39,8 @@ function saveLocation() {
     body: JSON.stringify({username: currentUser.name, locations: zipcodeArray, settings: currentUser.settings})
   })
   .then(response => response.json())
-  .then(parsedResponse => console.log(parsedResponse))
+  .then(data => console.log(data))
+  locationArray()
 }
 
 function locationArray() {
@@ -69,10 +70,10 @@ function logIn() {
     body: JSON.stringify({username: username, password: password})
   })
     .then(response => response.json())
-    .then(parsedResponse => {
-      if (parsedResponse.message === "Logged In") {
+    .then(loginData => {
+      if (loginData.message === "Logged In") {
         toggleLogin(),
-        currentUser = parsedResponse.object,
+        currentUser = loginData.object,
         console.log(currentUser);
         zipcodeArray = currentUser.locations
         displayName.textContent = "hello, "+ currentUser.name;
@@ -115,12 +116,13 @@ function signUp() {
     body: JSON.stringify({username: username, password: password})
   })
     .then(response => response.json())
-    .then(parsedResponse => {
-      if (parsedResponse.message === "Logged In") {
+    .then(signupData => {
+      if (signupData.message === "Logged In") {
         toggleLogin();
-        currentUser = parsedResponse.object,
+        currentUser = signupData.object,
         console.log(currentUser);
         displayName.textContent = "name: "+ currentUser.name;
+        saveDarkMode();
       }
     })
 }
@@ -128,19 +130,19 @@ function logOut() {
   let buttons = document.querySelector("button#loginButton")
   fetch(`http://${BACKEND_URL}/logout`)
     .then(response => response.json())
-    .then(parsedResponse => {
-      if (parsedResponse.message === "Logged Out") {
+    .then(logoutData => {
+      if (logoutData.message === "Logged Out") {
         toggleLogin();
         zipcodeArray = [];
         settingsArray = [];
         clearListArray();
       }
-      console.log(parsedResponse)
+      console.log(logoutData)
     })
     currentUser = null;
 }
 
-function newCard() {
+/*function newCard() {
   const newCards = document.querySelector("body > div.cards")
   const newDiv = document.createElement("div")
   const newH3 = document.createElement("h3")
@@ -159,8 +161,9 @@ function newCard() {
   //newP.setAttribute("class", "description")
   //newP.innerHTML = "description"
 }
+*/
 function toggleSomething(something) {
-  var x = document.getElementById(something);
+  let x = document.getElementById(something);
   if (x.style.display === 'none') {
     x.style.display = "unset";
   } else {
@@ -168,7 +171,7 @@ function toggleSomething(something) {
   }
 }
 function toggleSettings() {
-  var x = document.getElementById("settings");
+  let x = document.getElementById("settings");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -176,7 +179,7 @@ function toggleSettings() {
   }
 }
 function toggleDarkMode() {
-  var element = document.body
+  let element = document.body
   element.classList.toggle("dark-mode");
   saveDarkMode();
 }
