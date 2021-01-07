@@ -52,6 +52,15 @@ class Weather{
     const windSpeedInt = Math.round(windSpeedFloat)
     windSpeed.textContent = "Wind Speed: " + windSpeedInt + "mph"
 
+    let windGust = document.querySelector(".wind-gust")
+      if (newWeather.wind.gust) {
+        const windGustFloat = newWeather.wind.gust
+        const windGustInt = Math.round(windGustFloat)
+        windGust.textContent = "Wind Gust: " + windGustInt + "mph"
+      } else {
+        windGust.textContent = "No Wind Gust"
+      }
+
   }
 
   /*
