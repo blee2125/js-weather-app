@@ -21,9 +21,10 @@ function saveDarkMode() {
       "Accept": "application/json",
     },
     body: JSON.stringify({username: currentUser.name, settings: settingsArray})
-  })
-  .then(response => response.json())
+  }) // Promise
+  .then(response => response.json()) // callback > throw new Error
   .then(data => console.log(data))
+  .catch(error => console.log(error)) // error handling
 }
 
 function saveLocation() {
@@ -61,13 +62,15 @@ function logIn() {
   let username = document.getElementById("login").value
   let password = document.getElementById("password").value
 
+  // document.getElementById(#form)
+
   fetch(`http://${BACKEND_URL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-    body: JSON.stringify({username: username, password: password})
+    body: JSON.stringify({username, password})
   })
     .then(response => response.json())
     .then(loginData => {
@@ -184,11 +187,18 @@ function toggleDarkMode() {
   saveDarkMode();
 }
 
+function seeTheWeather() {
+  let zipcode = document.getElementById("zipcode").value
+  const newWeather= new Weather()
+  newWeather.getWeather(zipcode)
+}
+
 // enter/return button for zipcode field, must load after DOM
 document.getElementById("zipcode").addEventListener("keyup", function(event) {
   if(event.key == "Enter") {
     event.preventDefault();
-    document.querySelector("button#zipcodeButton").click();
+    //document.querySelector("button#zipcodeButton").click();
+    seeTheWeather();
   }
 });
 document.getElementById("password").addEventListener("keyup", function(event) {
@@ -197,3 +207,4 @@ document.getElementById("password").addEventListener("keyup", function(event) {
     document.querySelector("button#loginButton").click();
   }
 });
+
