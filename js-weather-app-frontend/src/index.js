@@ -1,8 +1,8 @@
 const BACKEND_URL = 'localhost:3000';
 let zipcodeArray = []
 let settingsArray = ["light"] //light is default
-var currentUser = null;
-var currentLocation = "";
+let currentUser = null;
+let currentLocation = null;
 
 function checkDark() {
   let darkModeCheck = (document.body.classList.value === "dark-mode")
@@ -189,8 +189,9 @@ function toggleDarkMode() {
 
 function seeTheWeather() {
   let zipcode = document.getElementById("zipcode").value
-  const newWeather= new Weather()
-  newWeather.getWeather(zipcode)
+  //const newWeather= new Weather()
+  Weather.getWeather(zipcode)
+  currentLocation = zipcode
 }
 
 // enter/return button for zipcode field, must load after DOM
