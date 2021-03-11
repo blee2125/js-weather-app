@@ -10,16 +10,16 @@
   </head>
   <body>
    
-    <div class="login">
+    <!-- <div class="login">
       <form>
-      <input type="text" id="login" placeholder="login">
-      <input type="password" id="password" placeholder="password">
-      <button type="button" id="loginButton" onclick="logIn();">login</button>
-      <button type="button" id="signupButton" onclick="signUp();">signup</button>
-      <label for="logoutButton" id="displayName" style="display: none;">user name</label>
-      <button type="button" id="logoutButton" style="display: none;" onclick="logOut();">logout</button>
-    </form>
-    </div>
+        <input type="text" id="login" placeholder="login">
+        <input type="password" id="password" placeholder="password">
+        <button type="button" id="loginButton" onclick="logIn();">login</button>
+        <button type="button" id="signupButton" onclick="signUp();">signup</button>
+        <label for="logoutButton" id="displayName" style="display: none;">user name</label>
+        <button type="button" id="logoutButton" style="display: none;" onclick="logOut();">logout</button>
+      </form>
+    </div> -->
 
     <div class="zipcode">
       <input name="inputZip" list="zipcodes" id="zipcode" placeholder="zipcode" autocomplete="off">
@@ -32,6 +32,16 @@
     </div>
 
     <div class="settings" id="settings" style="display: none;">
+      <div class="login">
+        <form>
+          <input type="text" id="login" placeholder="login">
+          <input type="password" id="password" placeholder="password">
+          <button type="button" id="loginButton" onclick="logIn();">login</button>
+          <button type="button" id="signupButton" onclick="signUp();">signup</button>
+          <label for="logoutButton" id="displayName" style="display: none;">user name</label>
+          <button type="button" id="logoutButton" style="display: none;" onclick="logOut();">logout</button>
+        </form>
+      </div>
       <p>Settings</p>
       <button type="button" id="darkModeButton" onclick="toggleDarkMode();">Toggle Dark Mode</button>
     </div>
@@ -49,6 +59,7 @@
       </div>
       <div class="column">
         <p class="wind-direction"></p>
+        <p class="cardinal-direction"></p>
         <p class="wind-speed"></p>
         <p class="wind-gust"></p>
       </div>
