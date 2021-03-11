@@ -1,13 +1,13 @@
 class Weather{
   constructor(data) {
     this.icon = data.weather[0].icon;
-    this.city = data.city;
+    this.city = data.name;
     this.temperature = data.main.temp;
     this.feelsLike = data.main.feels_like;
     this.description = data.weather[0].description;
     this.windDirection = data.wind.deg;
     this.windSpeed  = data.wind.speed;
-    this.windGust = data.wind.windGust;
+    this.windGust = data.wind.gust;
   }
 
   static getWeather(zipcode) {
@@ -20,6 +20,12 @@ class Weather{
         newWeather.renderWeather()
       })
   }
+
+  degToCompass(num) {
+    var val = Math.floor((num / 22.5) + 0.5);
+    var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    return arr[(val % 16)];
+  }
   
   renderWeather() {
     let icon = document.querySelector("#icon")
@@ -27,7 +33,7 @@ class Weather{
     icon.setAttribute("src", `http://openweathermap.org/img/wn/${iconImage}@2x.png`)
 
     let city = document.querySelector(".city")
-    const cityName = this.name
+    const cityName = this.city
     city.textContent = cityName
 
     let temperature = document.querySelector(".temperature")
@@ -47,6 +53,10 @@ class Weather{
     let windDirection = document.querySelector(".wind-direction")
     const windDirectionFloat = this.windDirection
     windDirection.textContent = "Wind Direction: " + windDirectionFloat + "°"
+
+    let cardinalDirection = document.querySelector(".cardinal-direction")
+    const nsew = this.degToCompass(windDirectionFloat)
+    cardinalDirection.textContent = nsew
 
     let windSpeed = document.querySelector(".wind-speed")
     const windSpeedFloat = this.windSpeed
