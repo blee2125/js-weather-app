@@ -10,13 +10,13 @@ class Weather{
     this.windGust = data.wind.gust;
   }
 
-  static getWeather(zipcode) {
-    const api = `http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=8e96251acc0bcddc94b74de1c9fc5d22&units=imperial`
+  static getWeather(zipcode, units = "imperial") {
+    const api = `http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=8e96251acc0bcddc94b74de1c9fc5d22&units=${units}`
     fetch(api)
       .then(response =>{return response.json()})
-      .then(newW =>{
-        console.log(newW)
-        const newWeather = new Weather(newW)
+      .then(weatherData =>{
+        console.log(weatherData)
+        const newWeather = new Weather(weatherData)
         newWeather.renderWeather()
       })
   }
