@@ -1,6 +1,6 @@
 const BACKEND_URL = 'localhost:3000';
 let zipcodeArray = []
-let settingsArray = ["light"] //light is default
+let settingsArray = ["light", "imperial"] //light is default
 let currentUser = null;
 let currentLocation = null;
 
@@ -186,11 +186,19 @@ function toggleDarkMode() {
   element.classList.toggle("dark-mode");
   saveDarkMode();
 }
+function toggleCF() {
+  if (settingsArray[1] === "metric") {
+    settingsArray[1] = "imperial"
+  } else {
+    console.log('feature coming soon')
+    //settingsArray[1] = "metric"
+  }
+}
 
 function seeTheWeather() {
   let zipcode = document.getElementById("zipcode").value
   //const newWeather= new Weather()
-  Weather.getWeather(zipcode)
+  Weather.getWeather(zipcode, settingsArray[1])
   currentLocation = zipcode
 }
 
