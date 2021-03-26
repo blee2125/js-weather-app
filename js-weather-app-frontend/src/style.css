@@ -2,6 +2,7 @@ body {
     background-color: rgb(0 207 241);
     color: black;
     text-align: center;
+    font-family: sans-serif;
 }
 .dark-mode {
     background-color: rgb(29 0 62);
@@ -50,11 +51,13 @@ body {
 .main-weather {
     width: 100%;
     height: 200px;
+    margin: inherit;
 }
 
 .settings {
     width: 100%;
     height: 100%;
     display: none;
+    margin: inherit;
 }
 
