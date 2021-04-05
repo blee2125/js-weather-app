@@ -4,6 +4,9 @@ body {
     text-align: center;
     font-family: sans-serif;
 }
+button{
+    height: 30px;
+}
 .dark-mode {
     background-color: rgb(29 0 62);
     color: white;
