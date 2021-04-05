@@ -189,9 +189,10 @@ function toggleDarkMode() {
 function toggleCF() {
   if (settingsArray[1] === "metric") {
     settingsArray[1] = "imperial"
+    seeTheWeather()
   } else {
-    console.log('feature coming soon')
-    //settingsArray[1] = "metric"
+    settingsArray[1] = "metric"
+    seeTheWeather()
   }
 }
 
