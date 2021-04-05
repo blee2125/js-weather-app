@@ -21,6 +21,13 @@ class Weather{
       })
   }
 
+  static getFiveDay(zipcode, units = "imperial"){
+    const api = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=8e96251acc0bcddc94b74de1c9fc5d22&units=${units}`
+    fetch(api)
+      .then(response =>{return response.json()})
+      .then(fiveDayData => console.log(fiveDayData))
+  }
+
   degToCompass(num) {
     var val = Math.floor((num / 22.5) + 0.5);
     var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
@@ -62,13 +69,15 @@ class Weather{
       let windSpeed = document.querySelector(".wind-speed")
       const windSpeedFloat = this.windSpeed
       const windSpeedInt = Math.round(windSpeedFloat)
-      windSpeed.textContent = "Wind Speed: " + windSpeedInt + "meter/sec"
+      const windSpeedMetric = Math.round(windSpeedInt * 3.6)
+      windSpeed.textContent = "Wind Speed: " + windSpeedMetric + " km/h"
 
       let windGust = document.querySelector(".wind-gust")
         if (this.windGust) {
           const windGustFloat = this.windGust
           const windGustInt = Math.round(windGustFloat)
-          windGust.textContent = "Wind Gust: " + windGustInt + "meter/sec"
+          const windGustMetric = Math.round(windGustInt * 3.6)
+          windGust.textContent = "Wind Gust: " + windGustMetric + " km/h"
         } else {
           windGust.textContent = "No Wind Gust"
         }
@@ -108,13 +117,13 @@ class Weather{
       let windSpeed = document.querySelector(".wind-speed")
       const windSpeedFloat = this.windSpeed
       const windSpeedInt = Math.round(windSpeedFloat)
-      windSpeed.textContent = "Wind Speed: " + windSpeedInt + "mph"
+      windSpeed.textContent = "Wind Speed: " + windSpeedInt + " mph"
 
       let windGust = document.querySelector(".wind-gust")
         if (this.windGust) {
           const windGustFloat = this.windGust
           const windGustInt = Math.round(windGustFloat)
-          windGust.textContent = "Wind Gust: " + windGustInt + "mph"
+          windGust.textContent = "Wind Gust: " + windGustInt + " mph"
         } else {
           windGust.textContent = "No Wind Gust"
         }
