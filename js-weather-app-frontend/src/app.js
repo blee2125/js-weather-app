@@ -17,7 +17,10 @@ class Weather{
       .then(weatherData =>{
         console.log(weatherData)
         const newWeather = new Weather(weatherData)
+        const lat = weatherData.coord.lat
+        const lon = weatherData.coord.lon
         newWeather.renderWeather()
+        this.getOneCallWeather(lat, lon, units)
       })
   }
 
@@ -26,6 +29,13 @@ class Weather{
     fetch(api)
       .then(response =>{return response.json()})
       .then(fiveDayData => console.log(fiveDayData))
+  }
+  static getOneCallWeather(lat, lon, units = "imperial"){
+    //example- const api = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,daily&appid=8e96251acc0bcddc94b74de1c9fc5d22`
+    const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=8e96251acc0bcddc94b74de1c9fc5d22&units=${units}`
+    fetch(api)
+      .then(response =>{return response.json()})
+      .then(oneCall => console.log(oneCall))
   }
 
   degToCompass(num) {
