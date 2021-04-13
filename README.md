@@ -2,15 +2,21 @@
 
 This is a weather application that displays weather data by zip code. A user can sign up for an account and save locations and settings. Users can toggle between dark mode and light mode. The frontend is written in javascript and the backend is ruby on rails with postgres.
 
-The weather data comes from the openweathermaps api.
+<p align="center"><img src="https://github.com/blee2125/js-weather-app/blob/main/js-weather-1.gif"></p>
 
-# Features
+**Language(s):** JavaScript, HTML, CSS, Ruby
 
--Toggle between light and dark mode
+**APIs:** [OpenWeatherMaps](https://openweathermap.org/api), Account Manager(Ruby on Rails backend)
 
--Toggle between metric or imperial units
+**Features:**
 
--View weather by zip code
+ ->View weather by zip code
 
--Save locations and settings with an account
+ ->Toggle between light and dark mode
+
+ ->Toggle between metric or imperial units
+
+ ->Save locations and settings with an account
+
+<p align="center"><img src="https://github.com/blee2125/js-weather-app/blob/main/js-weather-2.gif"></p>
 
